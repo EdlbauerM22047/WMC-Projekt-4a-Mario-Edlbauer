@@ -114,7 +114,7 @@ app.post("/api/quizzes/:id/questions", (req, res) => {
 
 // PUT update question
 app.put("/api/questions/:id", (req, res) => {
-  const { question_text, answer_a, answer_b, answer_c, answer_d, correct_answer } = req.body;
+  const { question_text, answer_a, answer_b, answer_c, answer_d, correct_answer } = req.body;;
 
   if (!question_text || !answer_a || !answer_b || !answer_c || !answer_d || !correct_answer) {
     return res.status(400).json({ error: "All fields are required" });
