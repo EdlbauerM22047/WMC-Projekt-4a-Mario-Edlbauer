@@ -1,0 +1,6 @@
+*.db
+node_modules/
+*.sqlite
+*.json
+*.db-wal
+*db-shm
