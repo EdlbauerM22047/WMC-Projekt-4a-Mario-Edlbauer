@@ -1,13 +1,11 @@
 <script>
   import { getI18n } from "$lib/i18n/index.svelte.js";
   import { getGameStore } from "$lib/stores/gameStore.svelte.js";
-  import { page } from "$app/stores";
 
   const i18n = getI18n();
   const game = getGameStore();
 </script>
 
-<!-- Navbar -->
 <nav class="navbar navbar-dark" style="background:#1a1730;">
   <div class="container-fluid px-3">
     <a class="navbar-brand fw-bold" href="/" style="font-size:1.3rem; color:#CECBF6;">
@@ -30,14 +28,10 @@
   </div>
 </nav>
 
-<!-- Page content -->
 <slot />
 
 <style>
-  :global(body) {
-    background: #f5f0e8;
-    min-height: 100vh;
-  }
+  :global(body) { background: #f5f0e8; min-height: 100vh; }
   :global(.card-sketch) {
     border: 2.5px solid #1a1a1a;
     border-radius: 6px;
@@ -51,26 +45,13 @@
     font-weight: 600;
     transition: all 0.1s;
   }
-  :global(.btn-sketch:active) {
-    box-shadow: 1px 1px 0 #1a1a1a !important;
-    transform: translate(2px, 2px);
-  }
-  :global(.btn-sketch-black) {
-    background: #1a1a1a !important;
-    color: white !important;
-  }
-  :global(.btn-sketch-outline) {
-    background: white !important;
-    color: #1a1a1a !important;
-  }
+  :global(.btn-sketch:active) { box-shadow: 1px 1px 0 #1a1a1a !important; transform: translate(2px,2px); }
+  :global(.btn-sketch-black) { background: #1a1a1a !important; color: white !important; }
+  :global(.btn-sketch-outline) { background: white !important; color: #1a1a1a !important; }
   :global(.input-sketch) {
     border: 2.5px solid #1a1a1a !important;
     border-radius: 4px !important;
     background: #fffef5 !important;
-    font-size: 1rem;
   }
-  :global(.input-sketch:focus) {
-    box-shadow: 3px 3px 0 #1a1a1a !important;
-    outline: none;
-  }
+  :global(.input-sketch:focus) { box-shadow: 3px 3px 0 #1a1a1a !important; outline: none; }
 </style>
