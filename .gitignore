@@ -3,4 +3,4 @@ node_modules/
 *.sqlite
 *.json
 *.db-wal
-*db-shm
+*.db-shm
