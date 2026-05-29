@@ -262,6 +262,8 @@ wss.on("connection", (ws) => {
         currentAnswers: {},
         questionStartTime: null,
         timer: null
+        ,
+        totalPlayers: room.players.length   // ← NEU
       };
 
       broadcast(clientInfo.code, { type: "game_started", quizId: room.quizId });
@@ -287,7 +289,7 @@ wss.on("connection", (ws) => {
       ws.send(JSON.stringify({ type: "answer_confirmed", answer: msg.answer }));
 
       // If all players answered → reveal early
-      if (Object.keys(room.gameState.currentAnswers).length >= room.players.length) {
+      if (Object.keys(room.gameState.currentAnswers).length >= room.gameState.totalPlayers) {
         revealAnswer(clientInfo.code);
       }
     }
@@ -297,7 +299,7 @@ wss.on("connection", (ws) => {
     const info = wsClients.get(ws);
     if (info) {
       const room = rooms.get(info.code);
-      if (room && info.playerId) {
+      if (room && info.playerId && room.status === "waiting") {  // ← "waiting" NEU
         room.players = room.players.filter(p => p.id !== info.playerId);
         broadcast(info.code, { type: "player_left", players: room.players });
       }
