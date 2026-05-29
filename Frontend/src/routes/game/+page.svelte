@@ -43,13 +43,13 @@
     ws = new WebSocket("ws://localhost:3000");
 
     ws.onopen = () => {
-      ws.send(JSON.stringify({ type: "join", code, nickname: game.nickname }));
+      ws.send(JSON.stringify({ type: "game_join", code, nickname: game.nickname }));
     };
 
     ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
 
-      if (msg.type === "joined") {
+      if (msg.type === "game_joined") {
         phase = "loading";
       }
 

@@ -224,6 +224,17 @@ wss.on("connection", (ws) => {
       ws.send(JSON.stringify({ type: "joined", room: { code, quizTitle: room.quizTitle, players: room.players } }));
     }
 
+    // GAME_JOIN: player/host reconnects on game page
+    if (msg.type === "game_join") {
+      const room = rooms.get(code);
+      if (!room) {
+        ws.send(JSON.stringify({ type: "error", message: "Room not found" }));
+        return;
+      }
+      wsClients.set(ws, { code, nickname: msg.nickname, isHost: false });
+      ws.send(JSON.stringify({ type: "game_joined" }));
+    }
+
     // ── START GAME ────────────────────────────────────────────────────
     if (msg.type === "start_game") {
       const clientInfo = wsClients.get(ws);
